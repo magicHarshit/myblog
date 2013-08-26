@@ -62,14 +62,13 @@ MEDIA_URL = ''
 STATIC_ROOT = ''
 STATIC_URL = '/static/'
 
-
 if ON_OPENSHIFT:
     STATICFILES_DIRS = (
-        os.path.join(os.environ.get('OPENSHIFT_REPO_DIR'),'wsgi','static'),
+        os.path.join(os.environ.get('OPENSHIFT_REPO_DIR'),'wsgi','static/'),
     )
 else:
     STATICFILES_DIRS = (
-        '/home/harshit/workspace/code/myblog/wsgi/static/',
+        '/home/harshit/workspace/code/blog/wsgi/static/',
         # os.path.join(PROJECT_PATH,'static'),
     )
 
