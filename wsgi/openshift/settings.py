@@ -59,7 +59,7 @@ MEDIA_URL = ''
 
 
 
-STATIC_ROOT = ''
+STATIC_ROOT = os.path.join(os.environ.get('OPENSHIFT_REPO_DIR'), 'wsgi', 'static')
 STATIC_URL = '/static/'
 
 
