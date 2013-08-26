@@ -80,7 +80,7 @@ STATICFILES_FINDERS = (
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
-SECRET_KEY = 'o3e(t&1l8(1j_!gn@m+r=km28&!zdazm2m)6n@eze6h=f$nq2#'
+default_keys = {'SECRET_KEY':'o3e(t&1l8(1j_!gn@m+r=km28&!zdazm2m)6n@eze6h=f$nq2#'}
 
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
@@ -117,5 +117,10 @@ INSTALLED_APPS = (
     'post',
 )
 
+use_keys = default_keys
+if ON_OPENSHIFT:
+    imp.find_module('openshiftlibs')
+    import openshiftlibs
+    use_keys = openshiftlibs.openshift_secure(default_keys)
 
-
+SECRET_KEY = use_keys['SECRET_KEY']
