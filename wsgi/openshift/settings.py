@@ -64,10 +64,9 @@ STATIC_ROOT = ''
 STATIC_URL = '/static/'
 
 
-
 if ON_OPENSHIFT:
     STATICFILES_DIRS = (
-        os.path.join(OPENSHIFT_PATH,'wsgi/static'),
+        os.path.join(OPENSHIFT_PATH,'wsgi','static'),
     )
 else:
     STATICFILES_DIRS = (
