@@ -7,7 +7,7 @@ setup(name='blog', version='1.0',
 
       #  Uncomment one or more lines below in the install_requires section
       #  for the specific client drivers/modules your application needs.
-      install_requires=['Django==1.3.1',
+      install_requires=['Django==1.4.5',
                         #  'pymongo',
                         #  'psycopg2',
       ],
