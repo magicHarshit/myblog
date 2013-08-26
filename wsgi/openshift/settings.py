@@ -3,7 +3,6 @@ import imp, os
 ON_OPENSHIFT = False
 if os.environ.has_key('OPENSHIFT_REPO_DIR'):
     ON_OPENSHIFT = True
-    OPENSHIFT_PATH =  os.environ.get('OPENSHIFT_REPO_DIR')
 
 PROJECT_PATH = os.path.dirname(os.path.realpath(__file__))
 DEBUG = True
@@ -66,7 +65,7 @@ STATIC_URL = '/static/'
 
 if ON_OPENSHIFT:
     STATICFILES_DIRS = (
-        os.path.join(OPENSHIFT_PATH,'wsgi','static'),
+        os.path.join(os.environ.get('OPENSHIFT_REPO_DIR'),'wsgi','static'),
     )
 else:
     STATICFILES_DIRS = (
