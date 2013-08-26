@@ -1,0 +1,36 @@
+{% extends 'post_base.html' %}
+
+{% block title %}
+Sign Up
+{% endblock %}
+
+{% block content%}
+<form id="form" method="POST">{% csrf_token %}
+	<legend>Sign Up</legend>
+	{% if msgOk %}
+	<div class="alert alert-success">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<strong>{{ msgOk }}</strong>
+	</div>
+	{% endif %}
+	{% if msgError %}
+	<div class="alert alert-danger">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<strong>{{ msgError }}</strong>
+	</div>
+	{% endif %}
+	<div class="form-group">
+		<label for="username">Username</label>
+		<input class="form-control" type="text" id="username" name="username" placeholder="Username" required>
+    </div>
+    <div class="form-group">
+		<label for="password">Password</label>
+		<input class="form-control" type="password"  id="password" name="password"placeholder="Password" required>
+    </div>
+    <div class="form-group">
+		<label for="passwordc">Password(Confirmation)</label>
+		<input class="form-control" type="password"  id="passwordc" name="passwordc"placeholder="Password(Confirmation)" required>
+    </div>
+	<button class="btn btn-success" type="submit">Sign Up</button>
+</form>
+{% endblock %}

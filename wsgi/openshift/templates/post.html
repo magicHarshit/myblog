@@ -1,0 +1,33 @@
+{% extends 'post_base.html' %}
+{% load url from future %}
+{% block title %}
+post.title
+{% endblock %}
+
+{% block content%}
+<div class="panel">
+	<div class="panel-heading">
+    	<h3 class="panel-title">{{ post.title }} - By: {{post.user.username}}</h3>
+  	</div>
+	{{ post.content|linebreaks }}
+	<div class="panel-footer"><span class="badge badge">{{comments|length}}</span> comments</div>
+	<ul class="list-group list-group-flush">
+	{% for comment in comments %}
+    	<li class="list-group-item"><strong>{{ comment.user.username}}: </strong>{{ comment }}</li>		
+	{% endfor %}
+  	</ul>
+</div>
+<form id="form" method="POST" action="{% url 'post' %}?pk={{post.pk}}">{% csrf_token %}
+	{% if msgError %}
+	<div class="alert alert-danger">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<strong>{{ msgError }}</strong>
+	</div>
+	{% endif %}
+    <div class="form-group">
+		<label for="comment">Comment</label>
+		<textarea class="form-control" rows="3" id="comment" name="comment" placeholder="Comment" required></textarea>
+    </div>
+	<button class="btn btn-success" type="submit">Comment</button>
+</form>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'post_base.html' %}
+{% load url from future %}
+{% block title %}
+Main
+{% endblock %}
+
+{% block content%}
+{% for post in posts %}
+<div class="panel">
+	<div class="panel-heading">
+    	<h3 class="panel-title"><a href="{% url 'post' %}?pk={{post.pk}}">{{ post.title }}</a> - By: {{ post.user.username}}</h3>
+  	</div>
+	{{ post.content|linebreaks }}
+</div>
+{% endfor %}
+<ul class="pager">
+	{% if posts.has_previous %}
+		<li class="previous"><a href="?page={{ posts.previous_page_number }}">&larr; Back</a></li>
+	{% else %}
+		<li class="previous disabled"><a href="#">&larr; Back</a></li>
+	{% endif %}
+	{% if posts.has_next %}
+        <li class="next"><a href="?page={{ posts.next_page_number }}">Next &rarr;</a></li>
+    {% else %}
+        <li class="next disabled"><a href="">Next &rarr;</a></li>
+    {% endif %}
+</ul>
+{% endblock %}
