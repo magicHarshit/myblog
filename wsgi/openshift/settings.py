@@ -59,12 +59,9 @@ MEDIA_ROOT = ''
 MEDIA_URL = ''
 
 
-if ON_OPENSHIFT:
-    STATIC_ROOT = 'http://blog-chanegit.rhcloud.com/static/media/'
-    STATIC_URL = '/static/'
-else:
-    STATIC_ROOT = ''
-    STATIC_URL = '/static/'
+
+STATIC_ROOT = ''
+STATIC_URL = '/static/'
 
 
 
