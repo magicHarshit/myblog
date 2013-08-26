@@ -3,6 +3,7 @@ import imp, os
 ON_OPENSHIFT = False
 if os.environ.has_key('OPENSHIFT_REPO_DIR'):
     ON_OPENSHIFT = True
+    OPENSHIFT_PATH =  os.environ.get('OPENSHIFT_REPO_DIR')
 
 PROJECT_PATH = os.path.dirname(os.path.realpath(__file__))
 DEBUG = True
@@ -67,11 +68,16 @@ else:
 
 
 
+if ON_OPENSHIFT:
+    STATICFILES_DIRS = (
+        os.path.join(OPENSHIFT_PATH,'wsgi/static'),
+    )
+else:
+    STATICFILES_DIRS = (
+        '/home/harshit/workspace/code/myblog/wsgi/static/',
+        # os.path.join(PROJECT_PATH,'static'),
+    )
 
-STATICFILES_DIRS = (
-    '/home/harshit/workspace/code/myblog/wsgi/static/',
-    # os.path.join(PROJECT_PATH,'static'),
-)
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
