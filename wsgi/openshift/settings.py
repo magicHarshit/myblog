@@ -67,12 +67,13 @@ if ON_OPENSHIFT:
     STATICFILES_DIRS = (
         os.path.join(os.environ.get('OPENSHIFT_REPO_DIR'),'wsgi','static/'),
     )
+    CKEDITOR_UPLOAD_PATH = os.path.join(os.environ.get('OPENSHIFT_REPO_DIR'),'wsgi','static/')
 else:
     STATICFILES_DIRS = (
         '/home/harshit/workspace/code/blog/wsgi/static/',
         # os.path.join(PROJECT_PATH,'static'),
     )
-
+    CKEDITOR_UPLOAD_PATH = '/home/harshit/workspace/code/blog/wsgi/static/'
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -114,6 +115,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    'ckeditor',
     'post',
 )
 
@@ -124,3 +126,11 @@ if ON_OPENSHIFT:
     use_keys = openshiftlibs.openshift_secure(default_keys)
 
 SECRET_KEY = use_keys['SECRET_KEY']
+
+CKEDITOR_CONFIGS = {
+    'awesome_ckeditor': {
+        'toolbar': 'Full',
+        'height': 300,
+        'width': 900,
+    },
+}

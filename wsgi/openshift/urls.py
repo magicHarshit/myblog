@@ -12,6 +12,8 @@ urlpatterns = patterns('',
     url(r'^post', 'post.views.post', name='post'),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 	url(r'^admin/', include(admin.site.urls)),
+    (r'^ckeditor/', include('ckeditor.urls')),
 )
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 urlpatterns += staticfiles_urlpatterns()

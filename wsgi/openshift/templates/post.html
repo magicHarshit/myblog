@@ -9,7 +9,7 @@ post.title
 	<div class="panel-heading">
     	<h3 class="panel-title">{{ post.title }} - By: {{post.user.username}}</h3>
   	</div>
-	{{ post.content|linebreaks }}
+	{{ post.content|safe }}
 	<div class="panel-footer"><span class="badge badge">{{comments|length}}</span> comments</div>
 	<ul class="list-group list-group-flush">
 	{% for comment in comments %}

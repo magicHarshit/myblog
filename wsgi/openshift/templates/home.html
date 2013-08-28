@@ -10,7 +10,7 @@ Main
 	<div class="panel-heading">
     	<h3 class="panel-title"><a href="{% url 'post' %}?pk={{post.pk}}">{{ post.title }}</a> - By: {{ post.user.username}}</h3>
   	</div>
-	{{ post.content|linebreaks }}
+	{{ post.content|safe }}
 </div>
 {% endfor %}
 <ul class="pager">
