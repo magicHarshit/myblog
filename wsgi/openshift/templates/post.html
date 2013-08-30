@@ -17,7 +17,7 @@ post.title
 	{% endfor %}
   	</ul>
 </div>
-<a href="{% url 'log_in' %}">Login to Post Comment</a>
+
 
  {% if user.is_authenticated %}
     <form id="form" method="POST" action="{% url 'post' %}?pk={{post.pk}}">{% csrf_token %}
@@ -33,5 +33,7 @@ post.title
         </div>
         <button class="btn btn-success" type="submit">Comment</button>
     </form>
+ {%else %}
+   <a href="{% url 'log_in' %}">Login to Post Comment</a>
  {% endif %}
 {% endblock %}
