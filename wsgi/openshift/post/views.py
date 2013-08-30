@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from post.models import Post, Comment
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.contrib.auth.decorators import login_required
 
 def home(request):
 	posts = Post.objects.all().order_by('-creation_date')
@@ -73,17 +74,18 @@ def new_post(request):
 	else:
 		return HttpResponseRedirect('/')
 
+
 def post(request):
 	#try:
-	postPk = request.GET['pk']
-	post = Post.objects.get(pk=postPk)
-	comments = Comment.objects.filter(post=post)
-	if request.method == 'POST':
-		content = request.POST['comment']
-		user = request.user
-		Comment.objects.create(user=user, content=content, post=post)
-		return HttpResponseRedirect('/post?pk='+str(postPk))
-	return render_to_response('post.html',{'post':post,'comments':comments}, context_instance=RequestContext(request))
+    postPk = request.GET['pk']
+    post = Post.objects.get(pk=postPk)
+    comments = Comment.objects.filter(post=post)
+    if request.method == 'POST':
+        content = request.POST['comment']
+        user = request.user
+        Comment.objects.create(user=user, content=content, post=post)
+        return HttpResponseRedirect('/post?pk='+str(postPk))
+    return render_to_response('post.html',{'post':post,'comments':comments,'user':request.user}, context_instance=RequestContext(request))
 	#except Exception:
 	#	return HttpResponseRedirect('/')
 

@@ -17,17 +17,21 @@ post.title
 	{% endfor %}
   	</ul>
 </div>
-<form id="form" method="POST" action="{% url 'post' %}?pk={{post.pk}}">{% csrf_token %}
-	{% if msgError %}
-	<div class="alert alert-danger">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		<strong>{{ msgError }}</strong>
-	</div>
-	{% endif %}
-    <div class="form-group">
-		<label for="comment">Comment</label>
-		<textarea class="form-control" rows="3" id="comment" name="comment" placeholder="Comment" required></textarea>
-    </div>
-	<button class="btn btn-success" type="submit">Comment</button>
-</form>
+<a href="{% url 'log_in' %}">Login to Post Comment</a>
+
+ {% if user.is_authenticated %}
+    <form id="form" method="POST" action="{% url 'post' %}?pk={{post.pk}}">{% csrf_token %}
+        {% if msgError %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ msgError }}</strong>
+        </div>
+        {% endif %}
+        <div class="form-group">
+            <label for="comment">Comment</label>
+            <textarea class="form-control" rows="3" id="comment" name="comment" placeholder="Comment" required></textarea>
+        </div>
+        <button class="btn btn-success" type="submit">Comment</button>
+    </form>
+ {% endif %}
 {% endblock %}
