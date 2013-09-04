@@ -1,6 +1,2 @@
-
-myblog
-The OpenShift `python` cartridge documentation can be found at:
-
-https://github.com/openshift/origin-server/tree/master/cartridges/openshift-origin-cartridge-python/README.md
-
+A Personal Blog Site  i.e. Hosted on openshift where a superuser can post his blog and users can post their comments.<br>
+Location: http://blog-changeit.rhcloud.com/
